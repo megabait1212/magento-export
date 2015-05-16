@@ -42,7 +42,7 @@ class AtenExporterForMagento {
     // Set the password to export data here
     const PASSWORD = '';
     // Version of this script
-    const VERSION = '2015-05-16';
+    const VERSION = '0.0.2';
 
     // Helper variables
     private $_tablePrefix;
@@ -257,6 +257,8 @@ class AtenExporterForMagento {
         $blankProduct['entity_id'] = '';
         $blankProduct['created_at'] = '';
         $blankProduct['updated_at'] = '';
+        $blankProduct['attribute_set'] = '';
+        $blankProduct['type'] = '';
         if ($AmastyProductLabelsTableExists == true) {
             $blankProduct['amasty_label_id'] = '';
             $blankProduct['amasty_label_name'] = '';
@@ -444,7 +446,7 @@ class AtenExporterForMagento {
             //$categoriesTable = array_reverse($categoriesTable);
             $categoriesT = array_column($categoriesTable, 0);
             //var_dump($categoriesT);
-            $product['json_categories'] = implode(',', $categoriesT);
+            $product['category_ids'] = implode(',', $categoriesT);
             // Save entire table in JSON format
             //$product['json_categories'] = json_encode($categoriesTable);
             // Escape double-quotes
@@ -589,7 +591,7 @@ class AtenExporterForMagento {
             </head>
             <body>
                 <form method="get" action="">
-                    <h2 style="text-align:center;"><a href="http://www.atensoftware.com/p187.php">Aten Software Product Data Exporter for Magento</a></h2>
+                    <h2 style="text-align:center;">Product Data Exporter for Magento</h2>
 
                     <div style="clear:both;"></div>
 
@@ -677,7 +679,7 @@ class AtenExporterForMagento {
 
                                         </form>
 
-                                        <div style="font-size:smaller; text-align:center; margin-top: 1em;">Copyright 2014 &middot; Aten Software LLC &middot; Version <?php echo self::VERSION; ?></div>
+                                        <div style="font-size:smaller; text-align:center; margin-top: 1em;">Version <?php echo self::VERSION; ?></div>
                                         </body>
                                         </html>
                                         <?php
@@ -730,4 +732,4 @@ class AtenExporterForMagento {
                                     }
 
                                 }
-                                ?>
+                                
